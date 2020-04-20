@@ -1,32 +1,30 @@
+package com.company.packs;
+
 import java.util.Scanner;
-
-public class App() {
+public class App {
     public static void main(String [] args) {
+        Scanner ki = new Scanner(System.in);
+        Question q1 = new Question("What color are apples?\n(a)red\n(b)orange\n(c)magenta", "red", "a");
+        Question q2 = new Question("What color are bananas?\n(a)red\n(b)yellow\n(c)blue", "yellow", "b");
 
-        String q1 = "What color are apples?\n"
-                + "(a)red\n(b)orange\n(c)magenta";
-        String q2 = "What color are bananas?\n"
-                + "(a)red\n(b)yellow\n(c)blue";
-
-        Question [] questions = {
-                new Question(q1, "a"),
-                new Question(q2, "b")
-        };
-
-    }
-    public static void takeTest(Question [] questions) {
         int score = 0;
-        for(int i = 0; i <questions.length; i++) {
-            Scanner keyboardInput = new Scanner(System.in);
-            System.out.println(questions[i].prompt);
-            String answer = keyboardInput.nextLine();
-            if(answer.equals(questions[i].answer)) {
-                score++;
-            }
-        }
-        System.out.println("You got " + score + "/" + questions.length);
 
+        System.out.print(q1.prompt);
+        String attempt1 = ki.nextLine();
+        System.out.print(q2.prompt);
+        String attempt2 = ki.nextLine();
+
+        if(attempt1.equals(q1.ans) || attempt1.equals(q1.answer)) {
+            score = score + 1;
+        }
+        if(attempt2.equals(q2.ans) || attempt2.equals(q2.answer)) {
+            score = score + 1;
+        }
+        if(score == 2) {
+            System.out.println("Congratulations! You win. \nYour score is " + score + "/2");
+        } else {
+            System.out.println("Your score is " + score + "/2");
+        }
 
     }
-
 }
